@@ -3,26 +3,35 @@ import os
 
 import aws_cdk as cdk
 
-from 15_agentic_workflows.15_agentic_workflows_stack import 15AgenticWorkflowsStack
+from src.step_functions_stack import StepFunctionsStack
+from src.strands_stack import StrandsStack
+from src.bedrock_agent_sagemaker_stack import BedrockAgentSagemakerStack
 
 
 app = cdk.App()
-15AgenticWorkflowsStack(app, "15AgenticWorkflowsStack",
-    # If you don't specify 'env', this stack will be environment-agnostic.
-    # Account/Region-dependent features and context lookups will not work,
-    # but a single synthesized template can be deployed anywhere.
 
-    # Uncomment the next line to specialize this stack for the AWS Account
-    # and Region that are implied by the current CLI configuration.
-
-    #env=cdk.Environment(account=os.getenv('CDK_DEFAULT_ACCOUNT'), region=os.getenv('CDK_DEFAULT_REGION')),
-
-    # Uncomment the next line if you know exactly what Account and Region you
-    # want to deploy the stack to. */
-
-    #env=cdk.Environment(account='123456789012', region='us-east-1'),
-
-    # For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
+# Step Functions Stack
+step_functions_stack = StepFunctionsStack(app, "StepFunctionsStack",
+    env=cdk.Environment(
+        account=os.getenv('CDK_DEFAULT_ACCOUNT'),
+        region=os.getenv('CDK_DEFAULT_REGION')
     )
+)
+
+# Strands Stack
+strands_stack = StrandsStack(app, "StrandsStack",
+    env=cdk.Environment(
+        account=os.getenv('CDK_DEFAULT_ACCOUNT'),
+        region=os.getenv('CDK_DEFAULT_REGION')
+    )
+)
+
+# Bedrock Agent & SageMaker Stack
+bedrock_agent_stack = BedrockAgentSagemakerStack(app, "BedrockAgentSagemakerStack",
+    env=cdk.Environment(
+        account=os.getenv('CDK_DEFAULT_ACCOUNT'),
+        region=os.getenv('CDK_DEFAULT_REGION')
+    )
+)
 
 app.synth()
