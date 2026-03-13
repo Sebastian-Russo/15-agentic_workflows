@@ -1,3 +1,9 @@
+# MANUAL SETUP REQUIRED:
+# - Create Lambda function code in lambda/agents_orchestrator/, lambda/task_router/, lambda/result_aggregator/
+# - Implement task routing logic in choice state
+# - Configure environment variables for agent endpoints
+# - Set up CloudWatch logging and monitoring
+
 import aws_cdk as cdk
 from aws_cdk import (
     Stack,
