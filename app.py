@@ -3,9 +3,9 @@ import os
 
 import aws_cdk as cdk
 
-from src.step_functions_stack import StepFunctionsStack
-from src.strands_stack import StrandsStack
-from src.bedrock_agent_sagemaker_stack import BedrockAgentSagemakerStack
+from src.integration.step_functions_stack import StepFunctionsStack
+from src.integration.strands_stack import StrandsStack
+from src.integration.bedrock_agent_sagemaker_stack import BedrockAgentSagemakerStack
 
 
 app = cdk.App()
